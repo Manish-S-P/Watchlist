@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Movie Track | Dashboard</title>
+</head>
+
+<body>
+
+    <!--Login and Sign Page-->
+    
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <i class='bx bx-code-alt'></i>
+            <div class="logo-name"><span>Movie</span>Track</div>
+        </a>
+        <ul class="side-menu">
+            <li class="active"><a href="#" data-section="home"><i class='bx bxs-dashboard'></i>Home</a></li>
+            <li><a href="#" data-section="watching"><i class='bx bx-play-circle'></i>Watching</a></li>
+            <li><a href="#" data-section="planned"><i class='bx bx-calendar-edit'></i>Planning</a></li>
+            <li><a href="#" data-section="completed"><i class='bx bx-check-circle'></i>Completed</a></li>
+            <li><a href="#" data-section="rewatching"><i class='bx bx-refresh'></i>Re-watching</a></li>
+            <li><a href="#" data-section="dropped"><i class='bx bx-x-circle'></i>Dropped</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form id="search-form" action="#">
+                <div class="form-input">
+                    <input id="search-input" type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="theme-toggle" hidden>
+            <label for="theme-toggle" class="theme-toggle"></label>
+        </nav>
+        <!-- End of Navbar -->
+
+        <main>
+            <!-- DASHBOARD VIEW -->
+            <div id="dashboard-view">
+                <div class="header">
+                    <div class="left">
+                        <h1>Dashboard</h1>
+                        <ul class="breadcrumb">
+                            <li><a href="#">Analytics</a></li>
+                            <li><a href="#" class="active"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Insights -->
+                <ul class="insights">
+                    <li>
+                        <i class='bx bx-movie'></i>
+                        <span class="info">
+                            <h3>1,074</h3>
+                            <p>Movies Watched</p>
+                        </span>
+                    </li>
+                    <li>
+                        <i class='bx bx-tv'></i>
+                        <span class="info">
+                            <h3>3,944</h3>
+                            <p>TV Shows Watched</p>
+                        </span>
+                    </li>
+                    <li>
+                        <i class='bx bx-time-five'></i>
+                        <span class="info">
+                            <h3>326 hrs</h3>
+                            <p>Time Spent Watching</p>
+                        </span>
+                    </li>
+                </ul>
+
+                <!-- Trending Section -->
+                <div class="bottom-data">
+                    <div class="trending">
+                        <div class="header">
+                            <h3>Trending</h3>
+                        </div>
+                        <div id="trending-section"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION VIEW FOR CATEGORIES -->
+            <div id="section-view" class="hidden">
+                <h2 id="section-title">Section Title</h2>
+                
+                <!-- Watching Section -->
+                <div class="status-section" id="watching-section">
+                    <h3>Currently Watching</h3>
+                    <div class="movies-container"></div>
+                </div>
+                
+                <!-- Planned Section -->
+                <div class="status-section" id="planned-section">
+                    <h3>Plan to Watch</h3>
+                    <div class="movies-container"></div>
+                </div>
+                
+                <!-- Completed Section -->
+                <div class="status-section" id="completed-section">
+                    <h3>Completed</h3>
+                    <div class="movies-container"></div>
+                </div>
+                
+                <!-- Rewatching Section -->
+                <div class="status-section" id="rewatching-section">
+                    <h3>Rewatching</h3>
+                    <div class="movies-container"></div>
+                </div>
+                
+                <!-- Dropped Section -->
+                <div class="status-section" id="dropped-section">
+                    <h3>Dropped</h3>
+                    <div class="movies-container"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Movie Detail Container -->
+    <div id="movie-detail" class="movie-detail hidden">
+        <div class="detail-content">
+            <div class="left-section">
+                <img id="detail-poster" src="" alt="Movie Poster" />
+                <h2 id="detail-title"></h2>
+                <p id="detail-year"></p>
+                <p id="detail-plot"></p>
+            </div>
+            <div class="right-section">
+                <label for="status-select">Status</label>
+                <select id="status-select">
+                    <option value="watching">Watching</option>
+                    <option value="planned">Planning</option>
+                    <option value="completed">Completed</option>
+                    <option value="rewatching">Rewatching</option>
+                    <option value="dropped">Dropped</option>
+                </select>
+
+                <div id="episode-counter-container" class="hidden">
+                    <label for="episode-count">Episode Count</label>
+                    <div class="episode-counter">
+                        <button id="decrease-episode">-</button>
+                        <input type="number" id="episode-count" value="1" min="1" readonly />
+                        <button id="increase-episode">+</button>
+                    </div>
+                </div>
+                <div id="episode-info" class="hidden" style="margin-top: 10px;">
+                    <p id="episode-progress">Progress: 0 / 0 episodes watched (0%)</p>
+                    <p id="next-episode-date">Next episode info not available.</p>
+                </div>
+
+                <label for="start-date">Start Date</label>
+                <input type="date" id="start-date" />
+
+                <label for="end-date">End Date</label>
+                <input type="date" id="end-date" />
+
+                <button id="save-button">Save</button>
+            </div>
+        </div>
+        <button id="close-detail">Close</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
